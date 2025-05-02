@@ -1,0 +1,43 @@
+To make sure everything runs smoothly, we've put together some instructions for setting up your local environment for both the backend and frontend. Please take a moment to read through them—it's super important for keeping our repo tidy and our collaboration efficient.
+
+Backend Setup and Dependency Management
+
+For the backend, we're using Python, so you'll need to set up a virtual environment. Don't worry, it's straightforward! Here's how:
+
+Create a Virtual Environment Locally:
+
+Run python -m venv venv to create a virtual environment named "venv" in your project directory.
+Activate it:
+On Windows: venv\Scripts\activate
+On macOS/Linux: source venv/bin/activate
+
+Install Dependencies:
+Use pip install -r requirements.txt to install the required packages.
+
+Adding New Dependencies:
+
+Need a new package? Install it with pip install <package_name>.
+Then, update requirements.txt by running pip freeze > requirements.txt.
+Don’t forget to commit the updated requirements.txt!
+
+Important: Please do not push the virtual environment directory (like "venv") to the repository. It keeps our repo clean and avoids issues with different systems.
+
+Frontend Setup and Dependency Management
+
+On the frontend side, we're working with . Getting started is easy:
+Install Dependencies:
+
+Make sure you have Node.js and npm installed.
+Run npm install to get all the required packages from package.json.
+Adding New Dependencies:
+
+If you need a new npm package, install it with npm install <package_name>.
+This updates package.json and package-lock.json—commit these changes.
+
+Important: Never push the "node_modules" directory to the repo. It’s huge and not necessary since everyone can generate it locally.
+
+Important Reminders
+Always use requirements.txt for backend and package.json for frontend to manage dependencies.
+
+Double-check that your .gitignore file excludes virtual environments and dependency directories. If not, add them!
+If you add new dependencies, update the dependency files and commit them.
