@@ -11,5 +11,3 @@ sentence-transformers
 openai
 tiktoken
 langchain-chroma 
-ipykernel
-pydantic

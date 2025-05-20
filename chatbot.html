@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Heart Disease Classifier</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9fafb;
+      margin: 0;
+      padding: 0;
+      color: #1f2937;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: white;
+      padding: 1rem 2rem;
+      box-shadow: 0 1px 10px rgba(0,0,0,0.05);
+    }
+
+    nav h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1e3a8a;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #374151;
+      margin-left: 1.5rem;
+      font-weight: 500;
+    }
+
+    nav a:last-child {
+      color: #2563eb;
+      font-weight: 600;
+    }
+
+    .landing-page {
+      text-align: center;
+      padding: 3rem 1rem;
+    }
+
+    .landing-page h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #1e3a8a;
+      margin: 0;
+    }
+
+    .landing-page h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-top: 1rem;
+    }
+
+    .landing-page span {
+      background: linear-gradient(to right, orange, deeppink, purple);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .landing-page p {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+    }
+
+    .button-group {
+      margin-top: 2rem;
+    }
+
+    .button-group button {
+      background: linear-gradient(to right, #ec4899, #8b5cf6);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 9999px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      margin: 0.5rem;
+    }
+
+    .button-group button:last-child {
+      background: linear-gradient(to right, #f59e0b, #84cc16);
+    }
+
+    .auth-form, .chat-container {
+      max-width: 500px;
+      margin: 2rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+
+    .auth-form input, .auth-form select {
+      width: 100%;
+      margin: 0.5rem 0;
+      padding: 0.75rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .auth-form button {
+      width: 100%;
+      background-color: #4f46e5;
+      color: white;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 8px;
+      margin-top: 1rem;
+      cursor: pointer;
+    }
+
+    .link-button {
+      background: none;
+      border: none;
+      color: #4f46e5;
+      cursor: pointer;
+      text-decoration: underline;
+      margin-top: 1rem;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .chat-box {
+      max-height: 400px;
+      overflow-y: auto;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      background-color: #f8fafc;
+    }
+
+    .message {
+      padding: 0.5rem;
+      margin: 0.5rem 0;
+      border-radius: 8px;
+    }
+
+    .message.user {
+      background-color: #dbeafe;
+      text-align: right;
+    }
+
+    .message.bot {
+      background-color: #e0f2fe;
+      text-align: left;
+    }
+
+    .input-container {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .input-container input {
+      flex: 1;
+      padding: 0.75rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .input-container button {
+      padding: 0.75rem 1rem;
+      border: none;
+      background-color: #4f46e5;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .error-message {
+      color: red;
+      margin-top: 0.5rem;
+    }
+
+    .error {
+      border-color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <h2>Heart Disease Classifier</h2>
+    <div>
+      <a href="#">Products</a>
+      <a href="#">Resources</a>
+      <a href="#">Pricing</a>
+      <a href="#">Careers</a>
+      <a href="#" onclick="showLogin()">Get started</a>
+    </div>
+  </nav>
+
+  <div class="landing-page" id="landing">
+    <h1>Heart Disease Classifier</h1>
+    <h2>Advanced AI Assistant For <span>Human/Heart</span> Healthcare</h2>
+    <p>Get instant Human/Heart medical answers for treatment, patient education and drugs</p>
+
+    <div class="button-group">
+      <button onclick="showLogin()">Medical Chatbot</button>
+      <button onclick="showLogin()">AI Diagnose</button>
+    </div>
+    
+    <div class="image-container">
+      <img src="Wavy_Tech-01_Single-08.jpg" alt="Chatbot Illustration" style="margin-top: 2rem; width: 300px; height: auto; border-radius: 16px;" />
+    </div>
+  </div>
+
+  <div class="auth-form hidden" id="login">
+    <h2>Login</h2>
+    <input type="email" placeholder="Email" id="loginEmail">
+    <input type="password" placeholder="Password" id="loginPassword">
+    <button onclick="loginUser()">Login</button>
+    <button class="link-button" onclick="showRegister()">Not registered? Register here</button>
+  </div>
+
+  <div class="auth-form hidden" id="register">
+    <h2>Register</h2>
+    <input type="text" placeholder="Full Name" id="regName">
+    <input type="text" placeholder="Username" id="regUsername">
+    <input type="email" placeholder="Email" id="regEmail">
+    <input type="text" placeholder="Phone Number" id="regPhone">
+    <input type="password" placeholder="Password" id="regPassword">
+    <input type="password" placeholder="Confirm Password" id="regConfirmPassword">
+    <label>Gender:</label>
+    <select id="regGender">
+      <option>Male</option>
+      <option>Female</option>
+      <option>Prefer not to say</option>
+    </select>
+    <button onclick="registerUser()">Register</button>
+  </div>
+
+  <div class="chat-container hidden" id="chat">
+    <header><h2>Heart Disease Classifier Chat</h2></header>
+    <div id="chat-box" class="chat-box"></div>
+    <div class="input-container">
+      <input type="text" id="user-input" placeholder="Type your symptoms..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    const users = [];
+
+    function showLogin() {
+      document.getElementById('landing').classList.add('hidden');
+      document.getElementById('login').classList.remove('hidden');
+    }
+
+    function showRegister() {
+      document.getElementById('login').classList.add('hidden');
+      document.getElementById('register').classList.remove('hidden');
+    }
+
+    function registerUser() {
+      const name = document.getElementById('regName').value.trim();
+      const username = document.getElementById('regUsername').value.trim();
+      const email = document.getElementById('regEmail').value.trim();
+      const phone = document.getElementById('regPhone').value.trim();
+      const password = document.getElementById('regPassword').value;
+      const confirm = document.getElementById('regConfirmPassword').value;
+      const gender = document.getElementById('regGender').value;
+
+      if (!name || !username || !email || !phone || !password || !confirm) {
+        alert("Please fill all fields.");
+        return;
+      }
+
+      if (password !== confirm) {
+        alert("Passwords do not match.");
+        return;
+      }
+
+      users.push({ name, username, email, phone, password, gender });
+      alert('Registered successfully! Please login.');
+
+      document.getElementById('register').classList.add('hidden');
+      document.getElementById('login').classList.remove('hidden');
+    }
+
+    function loginUser() {
+      const email = document.getElementById('loginEmail').value.trim();
+      const password = document.getElementById('loginPassword').value;
+
+      clearError();
+
+      if (!email || !password) {
+        showError("Please enter both email and password.");
+        return;
+      }
+
+      const user = users.find(u => u.email === email && u.password === password);
+
+      if (user) {
+        document.getElementById('login').classList.add('hidden');
+        document.getElementById('chat').classList.remove('hidden');
+
+        const chatBox = document.getElementById('chat-box');
+        chatBox.innerHTML = '';
+        setTimeout(() => {
+          const welcomeMsg = document.createElement('div');
+          welcomeMsg.className = 'message bot';
+          welcomeMsg.innerHTML = `
+            <strong>Welcome back, ${user.name}!</strong><br><br>
+            I'm your Heart Disease Risk Classifier. How can i help you!
+          `;
+          chatBox.appendChild(welcomeMsg);
+          chatBox.scrollTop = chatBox.scrollHeight;
+        }, 500);
+      } else {
+        showError("Invalid credentials. Please try again.");
+        document.getElementById('loginEmail').classList.add('error');
+        document.getElementById('loginPassword').classList.add('error');
+      }
+    }
+
+    function showError(message) {
+      clearError();
+      const errorElement = document.createElement('div');
+      errorElement.className = 'error-message';
+      errorElement.textContent = message;
+      const loginButton = document.querySelector('#login button');
+      loginButton.parentNode.insertBefore(errorElement, loginButton.nextSibling);
+    }
+
+    function clearError() {
+      const existingError = document.querySelector('.error-message');
+      if (existingError) existingError.remove();
+      document.getElementById('loginEmail').classList.remove('error');
+      document.getElementById('loginPassword').classList.remove('error');
+    }
+
+    function sendMessage() {
+      const input = document.getElementById('user-input');
+      const msg = input.value;
+      if (msg.trim() === '') return;
+
+      const box = document.getElementById('chat-box');
+      const userMsg = document.createElement('div');
+      userMsg.className = 'message user';
+      userMsg.innerText = msg;
+      box.appendChild(userMsg);
+      input.value = '';
+
+      fetch('http://127.0.0.1:5004/predict', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ symptoms: msg })
+      })
+      .then(response => response.json())
+      .then(data => {
+        const botMsg = document.createElement('div');
+        botMsg.className = 'message bot';
+        botMsg.innerText = data.reply || 'No diagnosis available.';
+        box.appendChild(botMsg);
+        box.scrollTop = box.scrollHeight;
+      })
+      .catch(error => {
+        const botMsg = document.createElement('div');
+        botMsg.className = 'message bot';
+        botMsg.innerText = 'Something went wrong. Please try again.';
+        box.appendChild(botMsg);
+        console.error('Error:', error);
+      });
+    }
+  </script>
+</body>
+</html>
